@@ -1,0 +1,43 @@
+﻿@model SkinCareShop.Models.Manufacturer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<table>
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(p => p.PhoneNumber, "Phone number:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.PhoneNumber)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Email, "Email:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Email)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Address.Country, "Country:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Address.Country)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Address.City, "City:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Address.City)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(p => p.Address.StreetNumber, "Street and Number:", new { style = "margin-right:10px" })</td>
+            <td>@Html.DisplayFor(p => p.Address.StreetNumber)</td>
+        </tr>
+    </tbody>
+</table>
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Manufacturer", method: FormMethod.Get, routeValues: new { id = Model.ManufacturerId })) {
+    <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+}
+
+@using (Html.BeginForm(actionName: "Delete", controllerName: "Manufacturer", method: FormMethod.Post, routeValues: new { id = Model.ManufacturerId })) {
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+}
+<br />

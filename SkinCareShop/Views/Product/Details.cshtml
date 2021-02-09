@@ -1,0 +1,62 @@
+﻿@model SkinCareShop.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+@Html.Label("Quantity", "Quantity:")
+<br />
+<p>@Model.Quantity</p>
+
+@Html.Label("Description", "Description:")
+<br />
+<div class="panel-body">
+    @if (Model.Description.IsEmpty()) {
+        <p>This product has no description</p>
+    }
+    else {
+        @Html.DisplayFor(b => b.Description)
+    }
+</div>
+
+@if (Model.Manufacturer != null) {
+    @Html.Label("Manufacturer", "Manufacturer:")
+    <br />
+    <p>@Model.Manufacturer.Name</p>
+    <br />
+    @Html.Label("Phone Number", "Phone Number:")
+    <br />
+    <p>@Model.Manufacturer.PhoneNumber</p>
+    <br />
+    @Html.Label("Email", "Email:")
+    <br />
+    <p>@Model.Manufacturer.Email</p>
+}
+<br />
+
+@if (Model.Category != null) {
+    @Html.Label("Category", "Category:")
+    <br />
+    <p>@Model.Category.Name</p>
+}
+
+@if (User.IsInRole("Admin")) {
+    using (Html.BeginForm(actionName: "Edit", controllerName: "Product", method: FormMethod.Get, routeValues: new { id = Model.ProductId })) {
+        <button style="margin-right:5px" class="btn btn-primary col-lg-1" type="submit">Update</button>
+    }
+
+    using (Html.BeginForm(actionName: "Delete", controllerName: "Product", method: FormMethod.Post, routeValues: new { id = Model.ProductId })) {
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
+        <button class="btn btn-primary col-lg-1" type="submit">Delete</button>
+    }
+    <br />
+}
+@if (User.Identity.IsAuthenticated) {
+    <br />
+    using (Html.BeginForm(actionName: "Order", controllerName: "Product", method: FormMethod.Get, routeValues: new { id = Model.ProductId })) {
+        <button class="btn btn-primary col-lg-1" type="submit">Order</button>
+    }
+    <br />
+}

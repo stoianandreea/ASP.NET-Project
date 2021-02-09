@@ -1,0 +1,57 @@
+﻿@model SkinCareShop.Models.Product
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Product")) {
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <!--camp ascuns pentru a retine id-ul obiectului-->
+    @Html.HiddenFor(b => b.ProductId)
+    <br />
+
+    @Html.Label("Name", "Product Name:")
+    <br />
+    @Html.EditorFor(b => b.Name, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Upc", "Upc:")
+    <br />
+    @Html.EditorFor(b => b.Upc, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Upc, "", new { @class = "text-danger" })
+    <br />
+
+    <br />
+    @Html.Label("Quantity", "Quantity:")
+    <br />
+    @Html.Editor("Quantity", new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(b => b.Quantity, "", new { @class = "text-danger" })
+    <br />
+
+    <br />
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextAreaFor(b => b.Description, new { @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Manufacturer", "Manufacturer:")
+    <br />
+    @Html.DropDownListFor(b => b.ManufacturerId, new SelectList(Model.ManufacturersList, "Value", "Text"), "Choose a manufacturer", new { @class = "form - control" })
+    @Html.ValidationMessageFor(b => b.ManufacturerId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Category", "Category:")
+    <br />
+    @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.CategoriesList, "Value", "Text"), "Choose a category", new { @class = "form - control" })
+    @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
+    <br />
+
+
+    <br />
+    <button class="btn btn-primary" type="submit">Update</button>
+}

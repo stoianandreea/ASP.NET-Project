@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Categories";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table">
+    <thead>
+    <th>Category</th>
+    <th>Update</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+        @foreach (var category in ViewBag.Categories) {
+        <tr>
+            <td>@category.Name</td>
+            @if (User.IsInRole("Admin")) {
+                <td>
+                    @using (Html.BeginForm(actionName: "Edit", controllerName: "Category", method: FormMethod.Get, routeValues: new { id = category.CategoryId })) {
+                        <button style="margin-right:5px" class="btn btn-primary" type="submit">Update</button>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm(actionName: "Delete", controllerName: "Category", method: FormMethod.Post, routeValues: new { id = category.CategoryId })) {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button style="margin-right:5px" class="btn btn-primary" type="submit">Delete</button>
+                    }
+                </td>
+            }
+            else {
+                <td>Only for Admin</td>
+                <td>Only for Admin</td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+
+@if (User.IsInRole("Admin")) {
+    @Html.ActionLink("Add category", "New")
+}

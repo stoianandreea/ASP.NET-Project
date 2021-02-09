@@ -1,0 +1,22 @@
+﻿@model SkinCareShop.Models.Product
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "Order", controllerName: "Product")) {
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <!--camp ascuns pentru a retine id-ul obiectului-->
+    @Html.HiddenFor(b => b.ProductId)
+    <br />
+
+    @Html.Label("Name", "Product Name:")
+    <br />
+    <p>@Model.Name</p>
+    <br />
+
+    <br />
+    <button class="btn btn-primary" type="submit">Order</button>
+}

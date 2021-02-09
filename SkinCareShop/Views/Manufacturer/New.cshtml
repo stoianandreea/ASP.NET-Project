@@ -1,0 +1,48 @@
+﻿@model SkinCareShop.Models.ManufacturerAddressViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Manufacturer", method: FormMethod.Post)) {
+
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the name", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("PhoneNumber", "PhoneNumber:")
+    <br />
+    @Html.TextBoxFor(b => b.PhoneNumber, null, new { placeholder = "Type in the phone number", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.PhoneNumber, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Email", "Email:")
+    <br />
+    @Html.TextBoxFor(b => b.Email, null, new { placeholder = "Type in the email", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Country", "Country:")
+    <br />
+    @Html.TextBoxFor(b => b.Country, null, new { placeholder = "Type in the country", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Country, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("City", "City:")
+    <br />
+    @Html.TextBoxFor(b => b.City, null, new { placeholder = "Type in the city", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.City, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("StreetNumber", "Street and number:")
+    <br />
+    @Html.TextBoxFor(b => b.StreetNumber, null, new { placeholder = "Type in the street and number", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.StreetNumber, "", new { @class = "text-danger" })
+    <br />
+
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}

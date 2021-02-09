@@ -1,0 +1,47 @@
+﻿@model SkinCareShop.Models.Product
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Product", method: FormMethod.Post)) {
+    @Html.Label("Upc", "Upc:")
+    <br />
+    @Html.TextBoxFor(b => b.Upc, null, new { placeholder = "Type in the product's Upc", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Upc, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Name", "Name:")
+    <br />
+    @Html.TextBoxFor(b => b.Name, null, new { placeholder = "Type in the product's name", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Description", "Description:")
+    <br />
+    @Html.TextArea("Description", null, new { placeholder = "Type in the product's description", @class = "form-control", @rows = "10" })
+    @Html.ValidationMessageFor(b => b.Description, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("Quantity", "Quantity:")
+    <br />
+    @Html.TextBoxFor(b => b.Quantity, null, new { placeholder = "Type in the product's quantity", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Quantity, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("Manufacturer", "Manufacturer:")
+    <br />
+    @Html.DropDownListFor(b => b.ManufacturerId, new SelectList(Model.ManufacturersList, "Value", "Text"), "Choose a manufacturer", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.ManufacturerId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Category", "Category:")
+    <br />
+    @Html.DropDownListFor(b => b.CategoryId, new SelectList(Model.CategoriesList, "Value", "Text"), "Choose a category", new { @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.CategoryId, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-primary" type="submit">Create</button>
+}

@@ -1,0 +1,30 @@
+﻿@model SkinCareShop.Models.Address
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Address", method: FormMethod.Post)) {
+
+    @Html.Label("Country", "Country:")
+    <br />
+    @Html.TextBoxFor(b => b.Country, null, new { placeholder = "Type in the country", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.Country, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("City", "City:")
+    <br />
+    @Html.TextBoxFor(b => b.City, null, new { placeholder = "Type in the city", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.City, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.Label("StreetNumber", "Street and number:")
+    <br />
+    @Html.TextBoxFor(b => b.StreetNumber, null, new { placeholder = "Type in the street and number", @class = "form-control" })
+    @Html.ValidationMessageFor(b => b.StreetNumber, "", new { @class = "text-danger" })
+    <br />
+
+    <br />
+    <button class="btn btn-primary" type="submit">Create</button>
+}

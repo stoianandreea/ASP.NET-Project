@@ -1,0 +1,15 @@
+﻿@{ 
+    ViewBag.Title = "My Orders"; 
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        @foreach (var prod in Model.Products) {
+            @Html.Label("Name", "Product name:")
+            <br />
+            <p>@prod.Name</p>}
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Addresses";
+}
+
+<h2>@ViewBag.Title</h2>
+<table class="table">
+    <thead>
+    <th>Country</th>
+    <th>City</th>
+    <th>Street and Number</th>
+    <th>Update</th>
+    <th>Delete</th>
+    </thead>
+    <tbody>
+        @foreach (var address in ViewBag.Addresses) {
+            <tr>
+                <td>@address.Country</td>
+                <td>@address.City</td>
+                <td>@address.StreetNumber</td>
+                <td>
+                    @using (Html.BeginForm(actionName: "Edit", controllerName: "Address", method: FormMethod.Get, routeValues: new { id = address.AdressId })) {
+                        <button style="margin-right:5px" class="btn btn-primary" type="submit">Update</button>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm(actionName: "Delete", controllerName: "Address", method: FormMethod.Post, routeValues: new { id = address.AdressId })) {
+                        @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button style="margin-right:5px" class="btn btn-primary" type="submit">Delete</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.ActionLink("Add address", "New")
